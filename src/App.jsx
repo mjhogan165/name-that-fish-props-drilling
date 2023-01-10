@@ -43,24 +43,17 @@ function App() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (fishIndex === 3) {
-      console.log("is 3");
-      setFishIndex(3);
-      setIsGameOver(true);
-      if (checkInput(guess, initialFishes[fishIndex].name)) {
-        setCorrectCount(correctCount + 1);
-      } else setIncorrectCount(incorrectCount + 1);
-    } else {
-      if (checkInput(guess, initialFishes[fishIndex].name)) {
-        setCorrectCount(correctCount + 1);
-        setAnswersLeft(() => {
-          return answersLeft.filter((fish) => fish !== guess);
-        });
-      } else {
-        setIncorrectCount(incorrectCount + 1);
-      }
-      setFishIndex(fishIndex + 1);
-    }
+    let isCorrect = checkInput(guess, initialFishes[fishIndex].name);
+    let currentFish = initialFishes[fishIndex].name;
+    let isLastFish = fishIndex === 3 ? true : false;
+    let index = answersLeft.findIndex((fish) => fish === currentFish);
+    let answersLeftCopy = answersLeft;
+    answersLeftCopy.splice(index, 1);
+    isCorrect
+      ? setCorrectCount(correctCount + 1)
+      : setIncorrectCount(incorrectCount + 1);
+    isLastFish ? setIsGameOver(true) : setFishIndex(fishIndex + 1);
+    setAnswersLeft(answersLeftCopy);
     setGuess("");
   };
   const checkInput = (input, value) => {

@@ -1,9 +1,7 @@
 import "./styles/score-board.css";
 //  Where the score is presented
 
-const answersLeft = ["trout", "salmon", "shark", "tuna"];
-
-export const ScoreBoard = ({incorrectCount, correctCount, answersLeft}) => {
+export const ScoreBoard = ({ incorrectCount, correctCount, answersLeft }) => {
   return (
     <div id="score-board">
       <div>Incorrect 🔻: {incorrectCount}</div>

@@ -1,6 +1,4 @@
-
-export const FinalScore = ({correctCount, incorrectCount, totalCount}) => (
-
+export const FinalScore = ({ correctCount, totalCount }) => (
   <div id="final-score">
     <h1>Your Final Score Was</h1>
     <div id="score">
