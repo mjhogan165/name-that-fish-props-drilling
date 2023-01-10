@@ -1,27 +1,12 @@
 import "./styles/game-board.css";
-import { Images } from "../assets/images";
+import { useState } from "react";
 
-const initialFishes = [
-  {
-    name: "trout",
-    url: Images.trout,
-  },
-  {
-    name: "salmon",
-    url: Images.salmon,
-  },
-  {
-    name: "tuna",
-    url: Images.tuna,
-  },
-  {
-    name: "shark",
-    url: Images.shark,
-  },
-];
 
-export const GameBoard = () => {
-  const nextFishToName = initialFishes[0];
+export const GameBoard = ({handleSubmit, handleInput, fishIndex, initialFishes, guess}) => {
+  const nextFishToName = initialFishes[fishIndex];
+
+ 
+
 
   return (
     <div id="game-board">
@@ -30,8 +15,8 @@ export const GameBoard = () => {
       </div>
       <form id="fish-guess-form" onSubmit={(e) => {}}>
         <label htmlFor="fish-guess">What kind of fish is this?</label>
-        <input type="text" name="fish-guess" />
-        <input type="submit" />
+        <input type="text" onChange={handleInput} value={guess} name="fish-guess" />
+        <input onClick={handleSubmit} type="submit" />
       </form>
     </div>
   );
