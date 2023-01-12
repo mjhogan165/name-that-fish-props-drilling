@@ -8,7 +8,9 @@ export const GameBoard = ({
   guess,
 }) => {
   const nextFishToName = initialFishes[fishIndex];
-
+   if(fishIndex === 4){
+    return null
+   }
   return (
     <div id="game-board">
       <div id="fish-container">
