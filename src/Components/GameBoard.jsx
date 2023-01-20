@@ -3,12 +3,11 @@ import "./styles/game-board.css";
 export const GameBoard = ({
   handleSubmit,
   handleInput,
-  fishIndex,
-  initialFishes,
   guess,
+  answersLeft
 }) => {
-  const nextFishToName = initialFishes[fishIndex];
-   if(fishIndex === 4){
+  const nextFishToName = answersLeft[0];
+   if(answersLeft.length < 1){
     return null
    }
   return (

@@ -27,29 +27,29 @@ const initialFishes = [
 
 function App() {
   const [guess, setGuess] = useState("");
-  const [fishIndex, setFishIndex] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
   const [incorrectCount, setIncorrectCount] = useState(0);
   const [answersLeft, setAnswersLeft] = useState(initialFishes);
+  let showScore = incorrectCount + correctCount > 3
 
   const handleInput = (e) => {
     setGuess(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    let correctFish = initialFishes[fishIndex].name;
+    let correctFish = answersLeft[0].name;
     let isCorrect = guess.toLowerCase() === correctFish.toLowerCase()
 
     setAnswersLeft(answersLeft.filter((x) => x.name !== correctFish));
-    
+
     if (isCorrect) {
       setCorrectCount(correctCount + 1);
     } else {
       setIncorrectCount(incorrectCount + 1);
     }
-    setFishIndex(fishIndex + 1);
     setGuess("");
   };
+
 
   return (
     <div className="App">
@@ -59,7 +59,7 @@ function App() {
           correctCount={correctCount}
           answersLeft={answersLeft}
         />
-        {correctCount + incorrectCount > 3 && (
+        {showScore && (
           <FinalScore
             correctCount={correctCount}
             incorrectCount={incorrectCount}
@@ -68,8 +68,8 @@ function App() {
         )}
         <GameBoard
           guess={guess}
+          answersLeft={answersLeft}
           initialFishes={initialFishes}
-          fishIndex={fishIndex}
           handleInput={handleInput}
           handleSubmit={handleSubmit}
         />
